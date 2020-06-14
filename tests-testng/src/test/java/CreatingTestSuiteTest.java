@@ -1,23 +1,15 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+public class CreatingTestSuiteTest extends BaseTest{
 
-public class CreatingTestSuiteTest {
-  
   @Test
   public void creatingTestSuite() throws InterruptedException {
-    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Evgeney\\IdeaProjects\\lesson_2\\drivers\\chromedriver.exe");
-    WebDriver driver = new ChromeDriver();
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
-    driver.get("http://192.168.99.100/");
     driver.findElement(By.id("tl_login")).sendKeys("user");
     driver.findElement(By.id("tl_password")).sendKeys("bitnami");
     driver.findElement(By.id("tl_login_button")).click();
+
     driver.switchTo().frame(1);
     driver.findElement(By.linkText("Test Specification")).click();
 
@@ -34,11 +26,19 @@ public class CreatingTestSuiteTest {
 
     driver.findElement(By.cssSelector(".clickable:nth-child(1)")).click();
 
+    createTestCase(driver, "001");
+    createStepsInTestCase(driver, 3);
+
+    createTestCase(driver, "002");
+    createStepsInTestCase(driver, 3);
+  }
+
+  private void createTestCase(WebDriver driver, String testCaseName) throws InterruptedException {
     //клик по тест съюту
     driver.switchTo().defaultContent();
     driver.switchTo().frame(1);
     driver.switchTo().frame(0);
-    driver.findElement(By.xpath("//span[contains(text(),'test_suite (0)')]")).click();
+    driver.findElement(By.xpath("//span[contains(text(),'test_suite')]")).click();
 
     //клик по шестеренке тест съюта
     driver.switchTo().defaultContent();
@@ -52,25 +52,18 @@ public class CreatingTestSuiteTest {
     driver.findElement(By.id("create_tc")).click();
 
     //ввод имени ТК
-    driver.findElement(By.id("testcase_name")).sendKeys("001");
-
+    driver.findElement(By.id("testcase_name")).sendKeys(testCaseName);
 
     driver.findElement(By.id("do_create_button")).click();
+  }
 
+  private void createStepsInTestCase(WebDriver driver, Integer countOfSteps) throws InterruptedException {
     driver.findElement(By.name("create_step")).click();
 
     Thread.sleep(1000);
     driver.switchTo().frame(0);
     driver.findElement(By.cssSelector(".cke_editable")).click();
 
-    createStepsInTestCase(driver, 3);
-
-
-    Thread.sleep(5000);  // Let the user actually see something!
-    driver.quit();
-  }
-
-  private void createStepsInTestCase(WebDriver driver, Integer countOfSteps) {
     for (int i = 0; i < countOfSteps; i++){
       //создание шагов ТК//
         //шаг
