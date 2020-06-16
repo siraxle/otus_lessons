@@ -6,9 +6,6 @@ public class CreatingTestSuiteTest extends BaseTest{
 
   @Test
   public void creatingTestSuite() throws InterruptedException {
-    driver.findElement(By.id("tl_login")).sendKeys("user");
-    driver.findElement(By.id("tl_password")).sendKeys("bitnami");
-    driver.findElement(By.id("tl_login_button")).click();
 
     driver.switchTo().frame(1);
     driver.findElement(By.linkText("Test Specification")).click();
@@ -55,6 +52,8 @@ public class CreatingTestSuiteTest extends BaseTest{
     driver.findElement(By.id("testcase_name")).sendKeys(testCaseName);
 
     driver.findElement(By.id("do_create_button")).click();
+
+
   }
 
   private void createStepsInTestCase(WebDriver driver, Integer countOfSteps) throws InterruptedException {
