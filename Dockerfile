@@ -1,8 +1,12 @@
-FROM java:1.8.0_221
+FROM fabric8/java-jboss-openjdk8-jdk:1.2.3
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p C:/Users/Evgeney/IdeaProjects/lesson_2/tests-testng/usr/src/app
+WORKDIR C:/Users/Evgeney/IdeaProjects/lesson_2/tests-testng/usr/src/app
 
-COPY . /usr/src/app
+COPY . C:/Users/Evgeney/IdeaProjects/lesson_2/tests-testng/usr/src/app
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["java", "otus.java"]
+EXPOSE 8080
+
+CMD ["java", "GetOtusTest.java"]
+
