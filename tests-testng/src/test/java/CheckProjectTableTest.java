@@ -17,7 +17,7 @@ public class CheckProjectTableTest extends BaseTest{
     driver.findElement(By.id("create")).click();
     //создание тест проекта через заполнение формы
     TestProjectModel testProjectModelbefore = new TestProjectModel("name_1", "q_",
-            "description_1", false);
+            "description_1", true);
     driver.findElement(
             By.name("tprojectName")).sendKeys(testProjectModelbefore.name);
     driver.findElement(By.name("tcasePrefix")).sendKeys(testProjectModelbefore.prefix);
@@ -53,7 +53,7 @@ public class CheckProjectTableTest extends BaseTest{
       if (testProjectModelbefore.name.equals(name) &&
               testProjectModelbefore.projectDescription.equals(description) &&
               testProjectModelbefore.prefix.equals(prefix) &&
-              testProjectModelbefore.isPublic.equals(false)){
+              testProjectModelbefore.isPublic.equals(isPublic)){
         System.out.println(i + " итерация");
         testProjectModelAfter.setName(name);
         testProjectModelAfter.setProjectDescription(description);

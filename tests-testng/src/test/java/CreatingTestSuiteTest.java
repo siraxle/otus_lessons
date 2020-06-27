@@ -32,19 +32,9 @@ public class CreatingTestSuiteTest extends BaseTest{
 
   private void createTestCase(WebDriver driver, String testCaseName) throws InterruptedException {
     //клик по тест съюту
-    driver.switchTo().defaultContent();
-    driver.switchTo().frame(1);
-    driver.switchTo().frame(0);
-    driver.findElement(By.xpath("//span[contains(text(),'test_suite')]")).click();
-
+    testSuiteClick();
     //клик по шестеренке тест съюта
-    driver.switchTo().defaultContent();
-    driver.switchTo().frame(1);
-    driver.switchTo().frame(1);
-    Thread.sleep(1000);
-    driver.findElement(By.xpath
-            ("//div[@class='workBack']/img[2]")).click();
-
+    gearTestSuiteClick();
     //клик по кнопке создания ТК
     driver.findElement(By.id("create_tc")).click();
 

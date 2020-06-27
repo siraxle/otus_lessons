@@ -33,4 +33,29 @@ public class BaseTest {
     driver.findElement(By.id("tl_login_button")).click();
   }
 
+  protected void testSuiteClick() {
+    //клик по тест съюту
+    driver.switchTo().defaultContent();
+    driver.switchTo().frame(1);
+    driver.switchTo().frame(0);
+    driver.findElement(By.xpath("//span[contains(text(),'test_suite')]")).click();
+  }
+
+  public void gearTestSuiteClick() throws InterruptedException {
+    //клик по шестеренке тест съюта
+    driver.switchTo().defaultContent();
+    driver.switchTo().frame(1);
+    driver.switchTo().frame(1);
+    Thread.sleep(1000);
+    driver.findElement(By.xpath
+            ("//div[@class='workBack']/img[2]")).click();
+  }
+
+  protected void deleteTestSuiteWithAllChildren() {
+    driver.switchTo().defaultContent();
+    driver.switchTo().frame(1);
+    driver.switchTo().frame(1);
+    driver.findElement(By.id("delete_testsuite")).click();
+    driver.findElement(By.name("delete_testsuite")).click();
+  }
 }
